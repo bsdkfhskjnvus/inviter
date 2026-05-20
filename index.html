@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алихан & Айым — Тойго чакыруу</title>
+    <meta name="description" content="Алихан менен Айымдын үйлөнүү тоюна чакыруу баракчасы. Биздин сүйүү майрамыбыздын кадырлуу коногу болуңуз!">
+    
+    <!-- Core CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-gold">
+
+    <!-- Canvas for falling petals (Background decoration) -->
+    <canvas id="petal-canvas"></canvas>
+
+    <!-- 1. FLOATING THEME SELECTOR PANEL -->
+    <div class="theme-panel-floating">
+        <span class="theme-label">Түсү:</span>
+        <div class="theme-btns">
+            <div class="theme-dot dot-gold active" onclick="switchTheme('theme-gold', this)" title="Назик Алтын"></div>
+            <div class="theme-dot dot-ruby" onclick="switchTheme('theme-ruby', this)" title="Жандуу Рубин"></div>
+            <div class="theme-dot dot-emerald" onclick="switchTheme('theme-emerald', this)" title="Салтанаттуу Изумруд"></div>
+        </div>
+    </div>
+
+    <!-- 2. HERO SCREEN (Башкы бет) -->
+    <section class="hero" id="home">
+        <!-- Background Ornaments -->
+        <svg class="corner-ornament corner-top-left" viewBox="0 0 100 100">
+            <path d="M0,0 Q50,0 50,50 Q0,50 0,100 M0,0 Q0,50 50,50 Q50,0 100,0 M20,20 Q40,20 40,40 Q20,40 20,60" fill="none" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <svg class="corner-ornament corner-top-right" viewBox="0 0 100 100">
+            <path d="M0,0 Q50,0 50,50 Q0,50 0,100 M0,0 Q0,50 50,50 Q50,0 100,0 M20,20 Q40,20 40,40 Q20,40 20,60" fill="none" stroke="currentColor" stroke-width="2"/>
+        </svg>
+
+        <div class="hero-card">
+            <!-- Kyrgyz National Top Pattern -->
+            <svg class="hero-ornament-top" viewBox="0 0 100 40">
+                <path d="M10 20 Q 30 0, 50 20 T 90 20 M 30 20 Q 50 35, 70 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="50" cy="20" r="3" />
+            </svg>
+            
+            <div class="hero-title-invite">Үйлөнүү тоюна чакыруу</div>
+            <div class="hero-monogram">А&А</div>
+            <h1 class="hero-names">Алихан<br><span>жана</span><br>Айым</h1>
+            
+            <div class="kyrgyz-divider">
+                <svg class="ornament-svg" viewBox="0 0 24 24">
+                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm-2-7l2-2 2 2-2 2-2-2z"/>
+                </svg>
+            </div>
+            
+            <div class="hero-date">25 ИЮЛЬ / 2026</div>
+            <a href="#invitation" class="btn-scroll-link">Толук маалымат алуу</a>
+        </div>
+    </section>
+
+    <!-- 3. INVITATION & COUNTDOWN SECTION (Чакыруу баракчасы жана артка эсептөө) -->
+    <section class="invitation" id="invitation">
+        <div class="container">
+            <div class="invitation-card">
+                <!-- Ornament header -->
+                <svg style="width: 50px; height: 50px; fill: var(--color-primary); margin-bottom: 1.5rem;" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                
+                <span class="subtitle">Жүрөктөрдүн Биримдиги</span>
+                <h2 class="invitation-title gold-text">Кадырлуу конокторубуз!</h2>
+                
+                <div class="invitation-description">
+                    <p style="margin-bottom: 1.5rem; font-style: italic;">«Жашоо чиркин бирге жүрсөң жарашат, сүйүү дагы кош жүрөктү каратат...»</p>
+                    <p style="margin-bottom: 1.5rem;">Ар бир адам баласынын жашоосунда жаңы үй-бүлө куруу — бул эң ыйык жана кубанычтуу кадам болуп саналат. Биздин жүрөгүбүз келечекке бирге кадам таштоого бел байлады.</p>
+                    <p>Турмуш жолубуздун ушул эң өзгөчө жана кубанычтуу күнүндө жаныбызда болуп, биздин бакыт майрамыбыздын кадырлуу коногу болуп берүүңүздөрдү чын жүрөктөн суранабыз!</p>
+                </div>
+
+                <!-- Live Countdown -->
+                <div class="countdown-box">
+                    <span class="countdown-caption">Салтанатка чейин калган убакыт:</span>
+                    <div class="countdown-timer">
+                        <div class="timer-slot">
+                            <span class="timer-num" id="days-val">00</span>
+                            <span class="timer-tag">Күн</span>
+                        </div>
+                        <div class="timer-slot">
+                            <span class="timer-num" id="hours-val">00</span>
+                            <span class="timer-tag">Саат</span>
+                        </div>
+                        <div class="timer-slot">
+                            <span class="timer-num" id="minutes-val">00</span>
+                            <span class="timer-tag">Мүнөт</span>
+                        </div>
+                        <div class="timer-slot">
+                            <span class="timer-num" id="seconds-val">00</span>
+                            <span class="timer-tag">Секунд</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. OUR LOVE STORY (Биздин сүйүү баяныбыз) -->
+    <section class="story-section" id="story">
+        <div class="container">
+            <span class="subtitle">Биздин сапарыбыз</span>
+            <h2 class="gold-text" style="font-size: 2.5rem; margin-bottom: 1rem;">Биздин сүйүү тарыхыбыз</h2>
+            <p style="max-width: 600px; margin: 0 auto 3.5rem; text-align: center;">Жүрөгүбүздү бириктирген эң ширин жана унутулгус көз ирмемдерди Сиздер менен бөлүшөбүз</p>
+
+            <div class="story-timeline">
+                <div class="story-line"></div>
+
+                <!-- Step 1 -->
+                <div class="story-node">
+                    <div class="story-content">
+                        <div class="story-image-placeholder">
+                            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=600" alt="Биринчи жолугушуу">
+                        </div>
+                        <span class="story-date-tag">14 Февраль / 2024</span>
+                        <h4 class="story-title">Биринчи таанышуу</h4>
+                        <p class="story-text">Жаздын алгачкы күнүндө, кокустан жолугуп калып, көздөрүбүз чагылышкан күн. Бул биздин жашообуздун жаңы барагын ачкан сонун көз ирмем болду.</p>
+                    </div>
+                    <div class="story-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </div>
+                    <div class="story-space"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="story-node">
+                    <div class="story-content">
+                        <div class="story-image-placeholder">
+                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600" alt="Сүйүү убадасы">
+                        </div>
+                        <span class="story-date-tag">08 Ноябрь / 2024</span>
+                        <h4 class="story-title">Жүрөк сыры</h4>
+                        <p class="story-text">Айлуу түндө, Ысык-Көлдүн жээгинде бири-бирибизге болгон сезимдерибизди ачык айтып, сүйүү убадасын бердик. Сезимдерибиз толкундардай чексиз экендигин түшүндүк.</p>
+                    </div>
+                    <div class="story-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                    <div class="story-space"></div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="story-node">
+                    <div class="story-content">
+                        <div class="story-image-placeholder">
+                            <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=600" alt="Сүйүү сунушу">
+                        </div>
+                        <span class="story-date-tag">07 Март / 2025</span>
+                        <h4 class="story-title">Сүйүү сунушу (Пропозиция)</h4>
+                        <p class="story-text">Алихан Айымга күтүүсүздөн кооз жерде тизелеп туруп, шакек сунуштап: «Менин өмүрлүк жарым болууга макулсуңбу?» — деди. Көзүнө жаш алган Айым «ООБА» деп жооп кайтарды!</p>
+                    </div>
+                    <div class="story-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </div>
+                    <div class="story-space"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. INTERACTIVE LOVE QUIZ (Сүйүү Викторинасы) -->
+    <section class="quiz-section" id="quiz">
+        <div class="container">
+            <span class="subtitle">Кызыктуу Викторина</span>
+            <h2 class="gold-text" style="font-size: 2.5rem; margin-bottom: 1rem;">Бизди канчалык жакшы билесиз?</h2>
+            <p style="max-width: 600px; margin: 0 auto 3rem; text-align: center;">Жаш жубайлар тууралуу 4 жөнөкөй суроого жооп берип, упай топтоңуз жана сүйүктүү конок экениңизди далилдеңиз!</p>
+            
+            <div class="quiz-container">
+                <!-- Active Question Display -->
+                <div class="quiz-question-box" id="quiz-question-wrapper">
+                    <span class="quiz-step-indicator" id="quiz-step">Суроо: 1 / 4</span>
+                    <h3 class="quiz-question-text" id="quiz-question-content">Сүйүктүүлөр алгачкы жолу кайсы шаарда жолугушкан?</h3>
+                    <div class="quiz-options-list" id="quiz-options-box">
+                        <!-- Buttons rendered dynamically by JS -->
+                    </div>
+                </div>
+
+                <!-- Final Results Display -->
+                <div class="quiz-result-box" id="quiz-result-wrapper">
+                    <h3 class="quiz-result-title">Оюндун жыйынтыгы!</h3>
+                    <div class="quiz-score-badge" id="quiz-score-num">0/4</div>
+                    <p style="font-size: 1.15rem; color: var(--color-text-dark); margin-bottom: 1.5rem; font-weight: 500;" id="quiz-evaluation">Сиз биздин эң сонун досубузсуз!</p>
+                    <button class="btn-clipboard-copy" style="margin: 0 auto; display: block;" onclick="restartQuiz()">Кайрадан ойноо</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TIMELINE / PROGRAM SECTION (Майрамдык Программа) -->
+    <section class="timeline-section" id="timeline" style="background-color: var(--color-bg-secondary);">
+        <div class="container">
+            <span class="subtitle">Майрамдык Программа</span>
+            <h2 class="gold-text" style="font-size: 2.5rem; margin-bottom: 1rem;">Той Күнүнүн Хроникасы</h2>
+            <p style="max-width: 600px; margin: 0 auto 3.5rem; text-align: center;">Той күнүндө бизди жана Сиздерди күтүп турган кызыктуу хронология менен таанышыңыз</p>
+            
+            <div class="story-timeline">
+                <div class="story-line"></div>
+                
+                <!-- Item 1 -->
+                <div class="story-node">
+                    <div class="story-content">
+                        <span class="story-date-tag">17:00</span>
+                        <h4 class="story-title">Фуршет & Конокторду кабыл алуу</h4>
+                        <p class="story-text">Ресторандын эшиктери ачылып, коноктор үчүн жандуу классикалык музыка, жеңил тамактар жана эстелик сүрөткө түшүү аянтчасы иштей баштайт.</p>
+                    </div>
+                    <div class="story-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                    <div class="story-space"></div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="story-node">
+                    <div class="story-content">
+                        <span class="story-date-tag">18:00</span>
+                        <h4 class="story-title">Нике кыюу салтанаты</h4>
+                        <p class="story-text">Жаштардын бири-бирине берген сүйүү убадасы жана никени расмий түрдө күбөлөндүрүү салтанаттуу аземи башталат.</p>
+                    </div>
+                    <div class="story-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </div>
+                    <div class="story-space"></div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="story-node">
+                    <div class="story-content">
+                        <span class="story-date-tag">19:00</span>
+                        <h4 class="story-title">Банкет салтанаты</h4>
+                        <p class="story-text">Каалоо-тилектер, даамдуу сый тамак, интерактивдүү оюндар, ырчы-чоорчулардын коштоосунда чоң майрамдык шоу-программа.</p>
+                    </div>
+                    <div class="story-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                    <div class="story-space"></div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="story-node">
+                    <div class="story-content">
+                        <span class="story-date-tag">22:30</span>
+                        <h4 class="story-title">Той тортту кесүү</h4>
+                        <p class="story-text">Жаңы түптөлгөн жаш үй-бүлөнүн ширин-таттуу жашоосунун символу болгон үйлөнүү тортту салтанаттуу кесүү аземи.</p>
+                    </div>
+                    <div class="story-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </div>
+                    <div class="story-space"></div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="story-node">
+                    <div class="story-content">
+                        <span class="story-date-tag">23:30</span>
+                        <h4 class="story-title">Фейерверк & Салют шоу</h4>
+                        <p class="story-text">Түндү жаркыраткан майрамдык салюттун жана кооз оттордун астында үйлөнүү салтанатты салтанаттуу аяктоо.</p>
+                    </div>
+                    <div class="story-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                    <div class="story-space"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. DRESS CODE SECTION (Дресс Код) -->
+    <section class="dresscode" id="dresscode">
+        <div class="container">
+            <div class="dresscode-card">
+                <span class="subtitle">Коноктор стили</span>
+                <h2 class="gold-text" style="font-size: 2.5rem; margin-bottom: 2rem;">Салтанаттуу Дресс-Код</h2>
+                <p style="max-width: 600px; margin: 0 auto 2.5rem;">Биздин тоюбуз назик пастелдик жана жылуу түстөрдүн палитрасында өтөт. Сүрөттөрүбүз гармониялуу жана көрктүү болушу үчүн ушул түстөгү кийимдерди тандоону сунуштайбыз:</p>
+                
+                <div class="dresscode-palette">
+                    <div class="color-circle" style="background-color: #F8EFEA;">
+                        <span>Каймак назик</span>
+                    </div>
+                    <div class="color-circle" style="background-color: #F1DED7;">
+                        <span>Назик Пудра</span>
+                    </div>
+                    <div class="color-circle" style="background-color: #E2CEB9;">
+                        <span>Жумшак Алтын</span>
+                    </div>
+                    <div class="color-circle" style="background-color: #CEBCAE;">
+                        <span>Капучино</span>
+                    </div>
+                    <div class="color-circle" style="background-color: #DDD4CD;">
+                        <span>Ачык Боз</span>
+                    </div>
+                </div>
+                
+                <div class="dresscode-gender">
+                    <div class="gender-box">
+                        <h4>Мырзалар үчүн:</h4>
+                        <p style="font-size: 1rem;">Классикалык кара, боз же кочкул көк костюм-шым жана жарашыктуу көйнөк.</p>
+                    </div>
+                    <div class="gender-box">
+                        <h4>Айымдар үчүн:</h4>
+                        <p style="font-size: 1rem;">Назик пастелдик түстөгү кечки же кооз коктейль көйнөктөрү.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. DYNAMIC GALLERY SECTION (Сүрөт Галереясы) -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <span class="subtitle">Бактылуу көз ирмемдер</span>
+            <h2 class="gold-text" style="font-size: 2.5rem; margin-bottom: 1rem;">Сүрөт галереябыз</h2>
+            <p style="max-width: 600px; margin: 0 auto; text-align: center;">Жүрөгүбүз сүйүүгө толуп турган эң кооз, кесипкөй сүрөттөрүбүздүн жыйнагын барактап көрүңүз</p>
+            
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Gallery Cards rendered dynamically by gallery.js -->
+            </div>
+
+            <!-- Custom Photo Uploader button for interactive template customization -->
+            <div class="gallery-action-block">
+                <button class="btn-premium-upload" id="btn-open-gallery-uploader">
+                    <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+                    Өз сүрөтүңүздү кошуңуз (Баракчаны кастомизациялоо)
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. ONLINE WISHES GUESTBOOK WALL (Каалоо-тилектер Дубалы) -->
+    <section class="wishes-section" id="wishes">
+        <div class="container">
+            <span class="subtitle">Жылуу каалоолор</span>
+            <h2 class="gold-text" style="font-size: 2.5rem; margin-bottom: 1rem;">Куттуктоолор дубалы</h2>
+            <p style="max-width: 650px; margin: 0 auto 3.5rem; text-align: center;">Жаш жубайларга карата чын дилиңизден чыккан каалоо-тилек, куттуктоолоруңузду түз эле ушул жерге жазып калтырыңыз!</p>
+            
+            <!-- Writing wish card Form -->
+            <div class="wishes-form-card">
+                <form class="rsvp-form" id="guestbook-form">
+                    <div class="form-group">
+                        <label for="wish-author-name">Сиздин Атыңыз *</label>
+                        <input type="text" id="wish-author-name" class="form-control" placeholder="Атыңызды жазыңыз" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="wish-text-content">Каалоо-тилегиңиз *</label>
+                        <textarea id="wish-text-content" rows="4" class="form-control" style="border-radius: 18px; resize: vertical;" placeholder="Каалоо-тилегиңизди ушул жерге жазыңыз..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-gold-foil">Тилекти жарыялоо</button>
+                </form>
+            </div>
+
+            <!-- Glowing Sticky-Note Wishes Grid -->
+            <div class="wishes-grid" id="guestbook-wishes-grid">
+                <!-- Dynamic cards rendered by guestbook.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. RSVP CONFIRMATION FORM (Катышууну Ырастоо) -->
+    <section class="rsvp" id="rsvp">
+        <div class="container">
+            <div class="rsvp-card">
+                <span class="subtitle">Ырастоо аземи</span>
+                <h2 class="gold-text" style="font-size: 2.5rem; margin-bottom: 1rem;">Тойго катышууңузду ырастаңыз</h2>
+                <p style="max-width: 600px; margin: 0 auto 2.5rem;">Кадырлуу коногубуз, майрамдык салтанатыбызды эң жогорку деңгээлде уюштуруу үчүн, **2026-жылдын 1-июлуна чейин** төмөнкү форманы толтуруп, катышууңузду тактап коюуңузду суранабыз.</p>
+                
+                <form class="rsvp-form" id="rsvp-form">
+                    <div class="form-group">
+                        <label for="rsvp-name">Сиздин Аты-Жөнүңүз *</label>
+                        <input type="text" id="rsvp-name" class="form-control" placeholder="Атыңызды жана фамилияңызды жазыңыз" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Салтанатка келе аласызбы? *</label>
+                        <div class="form-radio-row">
+                            <div class="radio-card">
+                                <input type="radio" name="rsvp-attendance" id="attend-yes" value="Ооба" checked>
+                                <label for="attend-yes">Ооба, сөзсүз барам</label>
+                            </div>
+                            <div class="radio-card">
+                                <input type="radio" name="rsvp-attendance" id="attend-no" value="Тилекке каршы, бара албайм">
+                                <label for="attend-no">Бара албайм</label>
+                            </div>
+                            <div class="radio-card">
+                                <input type="radio" name="rsvp-attendance" id="attend-maybe" value="Белгисиз">
+                                <label for="attend-maybe">Азырынча так эмес</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rsvp-guests">Коноктордун саны</label>
+                        <select id="rsvp-guests" class="form-control">
+                            <option value="Жалгыз өзүм">Жалгыз өзүм</option>
+                            <option value="Жолдошум/Жарым менен (+1)">Жолдошум / Жарым менен (+1)</option>
+                            <option value="Үй-бүлөм менен (+2 же андан көп)">Үй-бүлөм менен (+2 же андан көп)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rsvp-food">Меню боюнча каалоолор</label>
+                        <select id="rsvp-food" class="form-control">
+                            <option value="Кадимки меню">Баары жарайт (Кадимки меню)</option>
+                            <option value="Халал гана">Халал меню гана</option>
+                            <option value="Вегетариандык">Эт жебейм (Вегетариандык меню)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Транспорт (Автобус) керекпи?</label>
+                        <div class="form-radio-row">
+                            <div class="radio-card">
+                                <input type="radio" name="rsvp-transfer" id="transfer-yes" value="Ооба">
+                                <label for="transfer-yes">Ооба, автобус керек</label>
+                            </div>
+                            <div class="radio-card">
+                                <input type="radio" name="rsvp-transfer" id="transfer-no" value="Жок, өзүм барам" checked>
+                                <label for="transfer-no">Жок, өз унаам менен барам</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-gold-foil">Катышууну ырастоо</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. GIFTS DETAILS & REGISTRY (Белектер жана Реестр) -->
+    <section class="gifts-section" id="gifts" style="background-color: var(--color-bg-secondary);">
+        <div class="container">
+            <span class="subtitle">Бизге белек сунушу</span>
+            <h2 class="gold-text" style="font-size: 2.5rem; margin-bottom: 2rem;">Сыйлык жана белектер</h2>
+            
+            <div class="gifts-card">
+                <div class="gifts-text-description">
+                    <p style="margin-bottom: 1.5rem;">Биздин жашообуздагы эң чоң белек — бул Сиздердин биздин майрамга катышып, кубанычыбызды тең бөлүшкөнүңүздөр!</p>
+                    <p>Эгерде бизге өзгөчө баалуу белек сунуштагыңыз келсе, аны **накталай же конверт түрүндө** тартууласаңыз биз үчүн абдан ыңгайлуу болот. Ошондой эле төмөнкү эсеп аркылуу дагы куттуктооңузду жолдосоңуз болот:</p>
+                </div>
+                <div class="gift-details-box">
+                    <div class="gift-label-num">
+                        <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted);">MBANK / ЭЛКАРТ КАРТАСЫ:</span>
+                        <div class="card-digital-number" id="digital-card-number">9417 8765 4321 0987</div>
+                    </div>
+                    <button class="btn-clipboard-copy" id="btn-copy-gift-card">Номерди көчүрүү</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. SALTANAT HALL LOCATION & MAPS (Салтанат өтүүчү жер) -->
+    <section class="location-wishes" id="location">
+        <div class="container">
+            <span class="subtitle">Салтанат жайы</span>
+            <h2 class="gold-text" style="font-size: 2.5rem; margin-bottom: 1rem;">Өтүүчү ресторан жана дареги</h2>
+            <p style="max-width: 600px; margin: 0 auto; text-align: center;">Жүрөк майрамыбыз Бишкек шаарындагы эң кооз, заманбап ресторандардын биринде өтөт</p>
+            
+            <div class="maps-box-wrapper">
+                <div class="restaurant-map-placeholder">
+                    <div class="map-location-marker">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </div>
+                    <h3 style="font-family: var(--font-serif); color: var(--color-text-dark); font-size: 1.6rem; margin-bottom: 0.5rem;">«Алтын Сарай» рестораны</h3>
+                    <p style="font-size: 1.05rem; max-width: 550px; text-align: center; margin-bottom: 1rem;">Бишкек шаары, Тынчтык проспектиси 123 (Аалы Токомбаев көчөсү менен кесилишет)</p>
+                    <a href="https://maps.google.com" target="_blank" class="btn-navigation-link">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48v15.12c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+                        Картаны ачуу
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. FLOATING PREMIUM CLASSICAL MUSIC PLAYER (Музыка Ойноткуч) -->
+    <div class="premium-music-controller">
+        <div class="music-volume-panel-box">
+            <span style="font-size: 0.65rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase;">Үнү</span>
+            <input type="range" class="music-volume-slider-bar" id="music-vol-control" min="0" max="1" step="0.05" value="0.4">
+        </div>
+        <button class="music-btn-trigger" id="btn-music-play-toggle" aria-label="Обонду ойнотуу же токтотуу">
+            <!-- Play icon by default -->
+            <svg id="music-icon-play" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+        </button>
+    </div>
+
+    <!-- 14. FOOTER SECTION -->
+    <footer>
+        <div class="footer-monogram">А & А</div>
+        <p class="footer-poetry">«Бакыт бул бир гана кол кармашуу эмес, бир багытты чогуу кароо жана сүйүү...»</p>
+        <p style="font-family: var(--font-serif); color: var(--color-primary); font-size: 1.25rem; margin-top: 1.5rem;">Сиздерди чын жүрөктөн күтөбүз!</p>
+        
+        <div class="footer-copyright">
+            <span>© 2026 Сүйүү баракчасы. Бардык укуктар корголгон.</span>
+            <button class="organizer-secret-trigger" id="btn-trigger-organizer" title="Башкаруу панели">⚙️</button>
+        </div>
+    </footer>
+
+    <!-- 15. COMPACT DYNAMIC PHOTO UPLOADER OVERLAY MODAL -->
+    <div class="common-overlay-modal" id="modal-gallery-uploader">
+        <div class="uploader-modal-card">
+            <button class="uploader-close-btn" id="btn-close-gallery-uploader">&times;</button>
+            <h3 style="font-family: var(--font-serif); color: var(--color-text-dark); font-size: 1.6rem; margin-bottom: 0.5rem;">Галереяны өзгөртүү</h3>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted);">Каалаган сүрөттөрүңүздү тандап, бул чакыруу баракчасын өзүңүзгө кастомизация кылыңыз.</p>
+            
+            <div class="uploader-dropzone" id="uploader-dropzone-element">
+                <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                <p style="font-weight: 600; color: var(--color-text-dark); margin-bottom: 0.4rem;">Сүрөттү бул жерге сүйрөңүз</p>
+                <p style="font-size: 0.78rem; color: var(--color-text-muted);">же сүрөт файлыңызды тандоо үчүн басыңыз</p>
+                <input type="file" id="file-uploader-input" multiple accept="image/*" style="display: none;">
+            </div>
+            
+            <p style="font-size: 0.75rem; color: var(--color-primary-dark); font-weight: 500;">Маалымат: Бардык жүктөлгөн сүрөттөр Сиздин гана браузериңизде (localStorage) сакталат.</p>
+        </div>
+    </div>
+
+    <!-- 16. ELEGANT GALLERY LIGHTBOX OVERLAY -->
+    <div class="lightbox-modal" id="lightbox-modal-element">
+        <button class="lightbox-close-btn" id="btn-lightbox-close">&times;</button>
+        <button class="lightbox-arrow lightbox-arrow-left" id="btn-lightbox-prev">&#10094;</button>
+        <div class="lightbox-inner">
+            <img src="" id="lightbox-element-img" class="lightbox-img" alt="Жомоктой сүрөт">
+        </div>
+        <button class="lightbox-arrow lightbox-arrow-right" id="btn-lightbox-next">&#10095;</button>
+    </div>
+
+    <!-- 17. ORGANIZER SECRET CONTROL DASHBOARD MODAL -->
+    <div class="admin-overlay-box" id="modal-admin-overlay">
+        <div class="admin-dashboard-card">
+            <div class="admin-dashboard-header">
+                <h3>Уюштуруучу Панели (Башкаруу)</h3>
+                <button class="admin-close-btn" id="btn-close-admin-dashboard">&times;</button>
+            </div>
+            <div class="admin-dashboard-body">
+                <!-- Stat meters grid -->
+                <div class="admin-stats-container">
+                    <div class="stat-metric-card">
+                        <span class="stat-metric-value" id="val-stat-total">0</span>
+                        <span class="stat-metric-label">Жалпы жооп</span>
+                    </div>
+                    <div class="stat-metric-card" style="border-color: rgba(56, 142, 60, 0.25);">
+                        <span class="stat-metric-value" id="val-stat-yes" style="color: #2E7D32;">0</span>
+                        <span class="stat-metric-label">Келе тургандар</span>
+                    </div>
+                    <div class="stat-metric-card" style="border-color: rgba(211, 47, 47, 0.25);">
+                        <span class="stat-metric-value" id="val-stat-no" style="color: #C62828;">0</span>
+                        <span class="stat-metric-label">Келе албагандар</span>
+                    </div>
+                    <div class="stat-metric-card" style="border-color: rgba(245, 124, 0, 0.25);">
+                        <span class="stat-metric-value" id="val-stat-maybe" style="color: #EF6C00;">0</span>
+                        <span class="stat-metric-label">Аныктала электер</span>
+                    </div>
+                </div>
+
+                <!-- RSVPs guest table section -->
+                <div>
+                    <h4 class="admin-section-title">Катышууну ырастаган коноктор</h4>
+                    <div class="admin-table-wrapper">
+                        <table class="admin-rsvp-table">
+                            <thead>
+                                <tr>
+                                    <th>Коноктун Аты-Жөнү</th>
+                                    <th>Катышуусу</th>
+                                    <th>Конок саны</th>
+                                    <th>Тамак түрү</th>
+                                    <th>Транспорт</th>
+                                    <th>Күнү</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-rsvp-table-rows">
+                                <!-- Data rows rendered dynamically by admin.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Wishes list management section -->
+                <div>
+                    <h4 class="admin-section-title">Куттуктоолорду башкаруу</h4>
+                    <div class="admin-table-wrapper">
+                        <table class="admin-rsvp-table">
+                            <thead>
+                                <tr>
+                                    <th>Автор</th>
+                                    <th>Куттуктоо текстти</th>
+                                    <th>Убактысы</th>
+                                    <th>Аракет</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-wishes-table-rows">
+                                <!-- Wishes list rows rendered dynamically by admin.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Footer reset and Excel download buttons -->
+                <div class="admin-panel-footer-actions">
+                    <button class="btn-admin-action btn-admin-action-reset" id="btn-reset-dashboard-data">Маалыматты тазалоо</button>
+                    <button class="btn-admin-action btn-admin-action-export" id="btn-export-dashboard-csv">Excel (CSV) форматында жүктөө</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 18. PREMIUM TOAST NOTIFICATION BOX -->
+    <div class="toast-msg-container" id="toast-message-box">
+        <svg class="toast-icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        <span id="toast-message-content">Ийгиликтүү сакталды!</span>
+    </div>
+
+    <!-- Core Javascript logic files -->
+    <script src="js/quiz.js"></script>
+    <script src="js/guestbook.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
